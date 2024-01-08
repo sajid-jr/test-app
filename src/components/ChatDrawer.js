@@ -171,8 +171,8 @@ function ChatDrawer({
     function pump() {
       return reader.read().then(({ value, done }) => {
         if (done) {
-          console.log("All suggestion: ",allSuggestions)
-          if(allSuggestions.length){
+          console.log("All suggestion: ", allSuggestions)
+          if (allSuggestions.length) {
             setChatLog((prevLog) => {
               const nextLog = prevLog.map((x) => ({ ...x }));
               nextLog.push({
@@ -214,8 +214,8 @@ function ChatDrawer({
         return pump();
       });
     }
-    console.log("All suggestions: ",allSuggestions)
-    
+    console.log("All suggestions: ", allSuggestions)
+
     return pump();
   };
 
@@ -335,9 +335,8 @@ function ChatDrawer({
         <div
           className="chat-wrapper"
           style={{
-            background: `linear-gradient(${
-              bgGradient ? bgGradient.join(", ") : ""
-            })`,
+            background: `linear-gradient(${bgGradient ? bgGradient.join(", ") : ""
+              })`,
           }}
         >
           {showClose !== false && (
@@ -362,7 +361,28 @@ function ChatDrawer({
             </div>
           )}
           <div className="chat-main">
+
             <div className="innerChat">
+              <ul className="chatType">
+                <li>
+                  <button className="active">
+                    <small>More</small>
+                    <span>Creative</span>
+                  </button>
+                </li>
+                <li>
+                  <button>
+                    <small>More</small>
+                    <span>Balanced</span>
+                  </button>
+                </li>
+                <li>
+                  <button>
+                    <small>More</small>
+                    <span>Precise</span>
+                  </button>
+                </li>
+              </ul>
               {chatLog?.map((chat, idx) => {
                 return (
                   <React.Fragment key={`chat_${idx}`}>
@@ -385,7 +405,14 @@ function ChatDrawer({
                       upVote={() => submitFeedback(true)}
                       onClickEvent={onClickEvent}
                     />}
-                    {chat?.suggestions?.length && JSON.stringify(chat?.suggestions)}
+                    <div className="cta_suggestions">
+                      {
+                        chat?.suggestions?.map((suggestion, idx) => {
+                          return <button key={`sugge_btn_${idx}`}> {suggestion}</button>
+
+                        })
+                      }
+                    </div>
                     {idx === 0 &&
                       quickPrompts?.map((prompt, idx) => (
                         <div className="cta-faqs" key={`quick_prompt_${idx}`}>

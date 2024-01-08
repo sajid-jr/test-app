@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500&display=swap');
 @import url('https://e1cdn.social27.com/digitalevents/liteversion/fonts/segoe-ui/stylesheet.css');
+
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 @font-face {
   font-family: 'URW DIN Arabic';
@@ -89,7 +90,7 @@ html {
 
 body {
   margin: 0;
- font-family: 'Segoe UI', sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   font-weight: 500;
 }
 
@@ -547,8 +548,9 @@ html {
 
         .message {
           padding: 17px 20px;
-          background: rgba(255,255,255,0.7);
-          box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.12), 0px 1.6px 3.6px rgba(0, 0, 0, 0.16);;
+          background: rgba(255, 255, 255, 0.7);
+          box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.12), 0px 1.6px 3.6px rgba(0, 0, 0, 0.16);
+          ;
           margin-bottom: 5px;
           display: inline-flex;
           flex-direction: column;
@@ -813,6 +815,7 @@ html {
 }
 
 @keyframes thumbsUpAnimation {
+
   0%,
   100% {
     transform: translateY(0);
@@ -824,6 +827,7 @@ html {
 }
 
 @keyframes thumbsDownAnimation {
+
   0%,
   100% {
     transform: translateY(0);
@@ -841,7 +845,7 @@ html {
   gap: 2px;
 }
 
-.spinner > div {
+.spinner>div {
   width: 5px;
   height: 5px;
   background-color: #173330;
@@ -865,6 +869,7 @@ html {
 }
 
 @-webkit-keyframes bouncedelay {
+
   0%,
   80%,
   100% {
@@ -879,6 +884,7 @@ html {
 }
 
 @keyframes bouncedelay {
+
   0%,
   80%,
   100% {
@@ -919,4 +925,65 @@ html {
   position: fixed;
   right: 20px;
   bottom: 20px;
+}
+
+
+
+.cta_suggestions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  button {
+    border: none;
+    color: #17235b;
+    border: 1px solid #1B4AEF;
+    padding: 0 8px;
+    border-radius: 4px;
+    height: 28px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+}
+
+.chatType {
+  list-style: none;
+  padding: 4px;
+  margin: 0 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 4px;
+
+  li {
+    flex: 1;
+
+    button {
+      width: 100%;
+      text-align: center;
+      background: #eeeeee;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      padding: 0.375rem;
+
+      small {
+        font-size: 10px;
+      }
+
+      span {
+        font-size: 14px;
+      }
+
+      &.active {
+        box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+        background: #1B4AEF;
+        color: #fff;
+      }
+    }
+  }
 }
