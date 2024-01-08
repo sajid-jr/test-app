@@ -16,8 +16,6 @@ function ChatMessage({
   const messageRef = useRef(null);
   const { isFeedbackMessage, message, type, time } = chat;
 
-  console.log('message', message, transformMessage(message));
-
   const [isUpActive, setUpActive] = useState(false);
   const [isDownActive, setDownActive] = useState(false);
 
@@ -193,16 +191,18 @@ function replaceWithHyperlinks(message) {
   if (!message) {
     return '';
   }
-
+  message = message.trim()
   const markdownLinkRegex = /\[([^[]+)]\(([^)]+)\)/g;
   const urlRegex = /(?<!href=")\bhttps?:\/\/\S+(?<![.,])/gi;
 
   if (markdownLinkRegex.test(message)) {
+    console.log("Message: ",message)
     return message.replace(
       markdownLinkRegex,
       '<a href="$2" target="_blank">$1</a>'
     );
   }
+  console.log("Message: ",message)
 
   return message.replace(urlRegex, '<a href="$&" target="_blank">$&</a>');
 }

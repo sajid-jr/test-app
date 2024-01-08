@@ -1,8 +1,8 @@
 const formatHoursAndMinutes = (date) => {
-  const hours = date.getHours() % 12;
+  let hours = date.getHours() % 12;
   const minutes = date.getMinutes();
   const amPm = date.getHours() < 12 ? 'AM' : 'PM';
-
+  hours = hours === 0 ? 12: hours;
   const formattedHours = hours < 10 ? `0${hours}` : hours;
   const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
 
