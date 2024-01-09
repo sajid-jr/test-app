@@ -54,8 +54,8 @@ function ChatDrawer({
       fetchStream(url, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
-          "x-api-key": apiKey,
+          'Content-Type': 'application/json',
+          'x-api-key': apiKey,
         },
         body: JSON.stringify({
           query: prompt,
@@ -80,8 +80,8 @@ function ChatDrawer({
       fetch(url, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
-          "x-api-key": apiKey,
+          'Content-Type': 'application/json',
+          'x-api-key': apiKey,
         },
         body: JSON.stringify({ user_id: userId, bot_id: botId }),
       }).then((response) => {
@@ -92,11 +92,13 @@ function ChatDrawer({
             if (data && data.length) {
               const history = [];
               data.forEach((item) => {
-                history.push({
-                  type: "user",
-                  message: item.User,
-                  time: formatTimeStamps(timezone, item.Timestamp),
-                });
+                if (history.length > 0) {
+                  history.push({
+                    type: "user",
+                    message: item.User,
+                    time: formatTimeStamps(timezone, item.Timestamp),
+                  });
+                }
 
                 history.push({
                   type: "ai",
@@ -133,7 +135,7 @@ function ChatDrawer({
     fetch(url, {
       method: "GET",
       headers: {
-        "x-api-key": apiKey,
+        'x-api-key': apiKey,
       },
     })
       .then((response) => {
@@ -171,7 +173,6 @@ function ChatDrawer({
     function pump() {
       return reader.read().then(({ value, done }) => {
         if (done) {
-          console.log("All suggestion: ", allSuggestions)
           if (allSuggestions.length) {
             setChatLog((prevLog) => {
               const nextLog = prevLog.map((x) => ({ ...x }));
@@ -214,7 +215,6 @@ function ChatDrawer({
         return pump();
       });
     }
-    console.log("All suggestions: ", allSuggestions)
 
     return pump();
   };
@@ -232,8 +232,8 @@ function ChatDrawer({
     fetch(url, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        "x-api-key": apiKey,
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
       },
       body: JSON.stringify({
         user_id: userId,
@@ -328,6 +328,11 @@ function ChatDrawer({
       setInput(e.target.value);
     }
   };
+
+  const changeTemperature = (temperature) => {
+    if (loading) return;
+    setTemperature(temperature);
+  }
   return (
     <>
       <div className={`drawer-main active`}>
@@ -363,26 +368,26 @@ function ChatDrawer({
           <div className="chat-main">
 
             <div className="innerChat">
-              <ul className="chatType">
-                <li>
-                  <button className="active">
+              {chatLog.length > 0 && <ul className="chatType">
+                <li onClick={() => changeTemperature(0)}>
+                  <button className={temperature === 0 ? "active" : ""}>
                     <small>More</small>
                     <span>Creative</span>
                   </button>
                 </li>
-                <li>
-                  <button>
+                <li onClick={() => changeTemperature(1)}>
+                  <button className={temperature === 1 ? "active" : ""}>
                     <small>More</small>
                     <span>Balanced</span>
                   </button>
                 </li>
-                <li>
-                  <button>
+                <li onClick={() => changeTemperature(2)}>
+                  <button className={temperature === 2 ? "active" : ""}>
                     <small>More</small>
                     <span>Precise</span>
                   </button>
                 </li>
-              </ul>
+              </ul>}
               {chatLog?.map((chat, idx) => {
                 return (
                   <React.Fragment key={`chat_${idx}`}>
@@ -393,8 +398,9 @@ function ChatDrawer({
                       chat={chat}
                       dateTimeColor={dateTimeColor}
                       isLastResponse={
+                        !loading &&
                         idx !== 0 &&
-                        idx === chatLog.length - 1 &&
+                        idx === chatLog.length - 2 && //Subtracting -2 because suggestions will be on last index
                         chat?.type === "ai"
                       }
                       key={`chat_${idx}`}
@@ -405,14 +411,14 @@ function ChatDrawer({
                       upVote={() => submitFeedback(true)}
                       onClickEvent={onClickEvent}
                     />}
-                    <div className="cta_suggestions">
+                    {chat?.suggestions?.length > 0 && <div className="cta_suggestions">
                       {
                         chat?.suggestions?.map((suggestion, idx) => {
-                          return <button key={`sugge_btn_${idx}`}> {suggestion}</button>
+                          return <button onClick={() => sendPromptMessage(suggestion)} key={`sugge_btn_${idx}`}> {suggestion}</button>
 
                         })
                       }
-                    </div>
+                    </div>}
                     {idx === 0 &&
                       quickPrompts?.map((prompt, idx) => (
                         <div className="cta-faqs" key={`quick_prompt_${idx}`}>
