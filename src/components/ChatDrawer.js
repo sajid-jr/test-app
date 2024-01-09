@@ -1,8 +1,9 @@
 import fetchStream from "fetch-readablestream";
 import React, { useEffect, useRef, useState } from "react";
 import { formatNow, formatTimeStamps } from "../utils/date";
-
+import { TbShieldCheck } from "react-icons/tb"
 import ChatMessage from "./ChatMessage";
+import { IoSend } from "react-icons/io5";
 
 const decoder = new TextDecoder();
 
@@ -368,26 +369,36 @@ function ChatDrawer({
           <div className="chat-main">
 
             <div className="innerChat">
-              {chatLog.length > 0 && <ul className="chatType">
-                <li onClick={() => changeTemperature(0)}>
-                  <button className={temperature === 0 ? "active" : ""}>
-                    <small>More</small>
-                    <span>Creative</span>
-                  </button>
-                </li>
-                <li onClick={() => changeTemperature(1)}>
-                  <button className={temperature === 1 ? "active" : ""}>
-                    <small>More</small>
-                    <span>Balanced</span>
-                  </button>
-                </li>
-                <li onClick={() => changeTemperature(2)}>
-                  <button className={temperature === 2 ? "active" : ""}>
-                    <small>More</small>
-                    <span>Precise</span>
-                  </button>
-                </li>
-              </ul>}
+              <div className="title">
+                <h2><span> EventsGPT  <i><TbShieldCheck /></i> </span></h2>
+                <p>AI-powered <span>copilot</span> for the events</p>
+              </div>
+
+
+
+              {chatLog.length > 0 && <div className="chatType">
+                <h4 className="labelChat">Choose a conversation style</h4>
+                <ul>
+                  <li onClick={() => changeTemperature(0)}>
+                    <button className={temperature === 0 ? "active" : ""}>
+                      <small>More</small>
+                      <span>Creative</span>
+                    </button>
+                  </li>
+                  <li onClick={() => changeTemperature(1)}>
+                    <button className={temperature === 1 ? "active" : ""}>
+                      <small>More</small>
+                      <span>Balanced</span>
+                    </button>
+                  </li>
+                  <li onClick={() => changeTemperature(2)}>
+                    <button className={temperature === 2 ? "active" : ""}>
+                      <small>More</small>
+                      <span>Precise</span>
+                    </button>
+                  </li>
+                </ul>
+              </div>}
               {chatLog?.map((chat, idx) => {
                 return (
                   <React.Fragment key={`chat_${idx}`}>
@@ -411,13 +422,17 @@ function ChatDrawer({
                       upVote={() => submitFeedback(true)}
                       onClickEvent={onClickEvent}
                     />}
-                    {chat?.suggestions?.length > 0 && <div className="cta_suggestions">
-                      {
-                        chat?.suggestions?.map((suggestion, idx) => {
-                          return <button onClick={() => sendPromptMessage(suggestion)} key={`sugge_btn_${idx}`}> {suggestion}</button>
+                    {chat?.suggestions?.length > 0 && <div >
 
-                        })
-                      }
+                      <h4 className="labelChat ">Here are some things EventsGPT Copilot can help you do.</h4>
+                      <div className="cta_suggestions">
+                        {
+                          chat?.suggestions?.map((suggestion, idx) => {
+                            return <button onClick={() => sendPromptMessage(suggestion)} key={`sugge_btn_${idx}`}> {suggestion}</button>
+
+                          })
+                        }
+                      </div>
                     </div>}
                     {idx === 0 &&
                       quickPrompts?.map((prompt, idx) => (
@@ -458,29 +473,37 @@ function ChatDrawer({
                   </div>
                 </div>
               )}
-              <input
-                className="form-control"
-                name=""
-                id=""
-                value={input}
-                placeholder="Type your query here..."
-                onChange={handleChange}
-                style={{
-                  color: formFieldTextColor ? "" : " ",
-                  background: formFieldBgColor ? "" : " ",
-                }}
-              ></input>
-              <div className="cta-footer">
-                <button
-                  type="submit"
-                  className="btn cta-chat"
+              <div className="text-center">
+                <div className="note">
+                  <i><TbShieldCheck /></i>
+                  <span className="flex-1">Your personal and company data are protected in this chat. Visit <a href="#">privacy policy</a> for more info. </span>
+                </div>
+              </div>
+              <div className="chatFields">
+                <input
+                  className="form-control"
+                  name=""
+                  id=""
+                  value={input}
+                  placeholder="Ask me anything related to events..."
+                  onChange={handleChange}
                   style={{
-                    color: sendButtonColor ? "" : " ",
-                    background: !sendButtonTextColor ? "" : " ",
+                    color: formFieldTextColor ? "" : " ",
+                    background: formFieldBgColor ? "" : " ",
                   }}
-                >
-                  Send
-                </button>
+                ></input>
+                <div className="cta-footer">
+                  <button
+                    type="submit"
+                    className="btn cta-chat"
+                    style={{
+                      color: sendButtonColor ? "" : " ",
+                      background: !sendButtonTextColor ? "" : " ",
+                    }}
+                  >
+                    <IoSend />
+                  </button>
+                </div>
               </div>
             </form>
           </div>
