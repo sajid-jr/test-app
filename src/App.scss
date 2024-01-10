@@ -504,7 +504,7 @@ html {
   height: 100%;
   width: 100%;
   background-color: #eeeeee;
-  background-image: linear-gradient(180deg, rgba(27, 117, 187, 0.1) 30%, rgba(211, 137, 253, 0.3) 96.27%);
+  background-image: linear-gradient(180deg, rgba(242, 227, 252, 0.2) 60%, rgba(211, 137, 253, 0.3) 96.27%);
   padding: 10px 0 0;
   display: flex;
   flex-direction: column;
@@ -1100,11 +1100,12 @@ html {
         min-height: 48px;
         border-radius: 10px;
         font-weight: 600;
+        text-shadow: 1px 0px rgb(0 0 0 / 20%);
 
 
         &.active {
           box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
-          background: linear-gradient(96deg, #8B4EAD -10.61%, #761C79 84.59%);
+          background: linear-gradient(96deg, #761C79 -10.61%, #761C79 84.59%);
           color: #fff;
         }
       }
@@ -1143,7 +1144,7 @@ html {
 .balanced .chat-wrapper .chat-footer .cta-footer .cta-chat,
 .balanced .chat-wrapper .chat-main .chat.user .chat-box .message,
 .balanced .chatType ul li button.active {
-  background: linear-gradient(149deg, #2761b7 0%, #0066ff 100%);
+  background: linear-gradient(149deg, #0066ff 0%, #0066ff 100%);
 }
 
 .balanced .chat-wrapper .chat-main .innerChat .title p span {
@@ -1151,7 +1152,7 @@ html {
 }
 
 .balanced .chat-wrapper {
-  background-image: linear-gradient(180deg, rgba(0, 117, 187, 0.1) 50%, rgba(0, 102, 255, 0.2) 96.27%);
+  background-image: linear-gradient(180deg, rgb(88 190 251 / 5%) 60%, rgba(0, 102, 255, 0.2) 96.27%);
 }
 
 .balanced .cta_suggestions button:hover {
@@ -1159,19 +1160,22 @@ html {
 }
 
 .precise .chat-wrapper .chat-footer .cta-footer .cta-chat,
-.precise .chat-wrapper .chat-main .chat.user .chat-box .message,
+.precise .chat-wrapper .chat-main .chat.user .chat-box .message {
+  background: linear-gradient(96deg, #69ca6d -10.61%, #4CAF50 84.59%);
+}
+
 .precise .chatType ul li button.active {
-  background: linear-gradient(96deg, #888E6A -10.61%, #B1BE16 84.59%);
+  background: linear-gradient(96deg, #4CAF50 -10.61%, #4CAF50 84.59%);
 }
 
 .precise .chat-wrapper .chat-main .innerChat .title p span {
-  color: #B1BE16;
+  color: #4CAF50;
 }
 
 .precise .chat-wrapper {
-  background-image: linear-gradient(180deg, rgba(27, 117, 187, 0.1) 50%, rgba(177, 190, 22, 0.2) 96.27%);
+  background-image: linear-gradient(180deg, rgba(76, 175, 80, 0.05) 60%, rgba(76, 175, 80, 0.3) 96.27%);
 }
 
 .precise .cta_suggestions button:hover {
-  border: 1px solid #B1BE16;
+  border: 1px solid #4CAF50;
 }
