@@ -503,8 +503,9 @@ html {
   position: fixed;
   height: 100%;
   width: 100%;
-  background: #eeeeee;
-  padding: 10px 0 10px;
+  background-color: #eeeeee;
+  background-image: linear-gradient(180deg, rgba(27, 117, 187, 0.1) 30%, rgba(211, 137, 253, 0.3) 96.27%);
+  padding: 10px 0 0;
   display: flex;
   flex-direction: column;
   max-width: 800px;
@@ -548,7 +549,7 @@ html {
           margin: 0 0 10px;
 
           span {
-            color: #1B4AEF;
+            color: #000;
             display: inline-flex;
             align-items: center;
             gap: 10px;
@@ -557,7 +558,12 @@ html {
           i {
             line-height: 1;
             font-size: 30px;
-            color: #000;
+            color: #761C79;
+
+            svg {
+              width: 30px;
+              height: 30px;
+            }
           }
         }
 
@@ -566,7 +572,7 @@ html {
           font-weight: 600;
 
           span {
-            color: #1B4AEF;
+            color: #761C79;
           }
         }
       }
@@ -680,7 +686,7 @@ html {
 
           .message {
             border-radius: 20px 20px 0px 20px;
-            background: linear-gradient(130deg, #2870EA 20%, #1B4AEF 77.5%);
+            background: linear-gradient(96deg, #8B4EAD -10.61%, #761C79 84.59%);
 
             p {
               text-align: left;
@@ -691,6 +697,8 @@ html {
 
         .dateTime {
           text-align: right;
+
+
         }
 
         .time-cta {
@@ -703,7 +711,11 @@ html {
         font-style: normal;
         font-weight: 500;
         line-height: 140%;
-        color: #566563;
+        color: #555555;
+
+        span {
+          font-weight: bold;
+        }
       }
 
       margin-bottom: 20px;
@@ -748,9 +760,16 @@ html {
   }
 
   .chat-footer {
-    padding: 10px 30px 10px;
+    .chat-main {
+      padding: 0 20px;
+    }
 
-
+    .chatFooterWrapper {
+      background: #fff;
+      border-radius: 20px 20px 0px 0px;
+      padding: 10px 30px 10px;
+      margin-top: 20px;
+    }
 
     .note {
       display: inline-flex;
@@ -759,13 +778,21 @@ html {
       font-size: 13px;
       line-height: 1;
       margin: 0 auto 4px;
-      color: #0c2477;
+      color: #1B75BB;
       padding: 4px 8px;
       border-radius: 6px;
-      background: #d9e2fb;
+
+      a {
+        text-transform: capitalize;
+      }
 
       i {
         font-size: 18px;
+
+        svg {
+          width: 18px;
+          height: 18px;
+        }
       }
 
       span {
@@ -777,16 +804,21 @@ html {
 
     .chatFields {
       position: relative;
+      display: flex;
+      gap: 8px;
+
+      .flex-1 {
+        flex: 1;
+      }
     }
 
     .form-control {
       resize: none;
       padding: 12px;
-      background: #fff;
-      box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.12), 0px 1.6px 3.6px rgba(0, 0, 0, 0.16);
+      background: #eee;
       border-radius: 12px;
       font-size: 14px;
-      border-radius: 4px;
+      border-radius: 100px;
       width: 100%;
       border: none;
       outline: none;
@@ -806,23 +838,30 @@ html {
     .cta-footer {
       text-align: right;
 
+
+
       .chatFields {
         position: relative;
+
       }
 
       .cta-chat {
-        font-size: 24px;
+        font-size: 20px;
         background: transparent;
         box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
         border: none;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        position: absolute;
-        top: 50%;
-        right: 10px;
-        transform: translate(0, -50%);
-        color: #1B4AEF;
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
+        background: linear-gradient(96deg, #8B4EAD -10.61%, #761C79 84.59%);
+        color: #fff;
+
+        &:hover {
+          opacity: 0.8;
+        }
       }
     }
   }
@@ -1004,13 +1043,22 @@ html {
   button {
     border: none;
     color: #17235b;
-    border: 1px solid #1B4AEF;
-    padding: 4px 8px;
-    border-radius: 4px;
+    padding: 8px 12px;
+    border-radius: 10px;
     font-size: 14px;
     line-height: 1.2;
     font-weight: 600;
     text-align: left;
+    background: #fff;
+    position: relative;
+    border: 1px solid transparent;
+    transition: all 0.3s;
+    box-shadow: rgba(0, 0, 0, 0.13) 0px 1.6px 3.6px 0px,
+      rgba(0, 0, 0, 0.1) 0px 0.3px 0.9px 0px;
+
+    &:hover {
+      border: 1px solid #8B4EAD;
+    }
   }
 }
 
@@ -1034,7 +1082,7 @@ html {
     align-items: center;
     justify-content: center;
     background: #fff;
-    border-radius: 4px;
+    border-radius: 10px;
     box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.12),
       0px 1.6px 3.6px rgba(0, 0, 0, 0.16);
     ;
@@ -1045,39 +1093,19 @@ html {
       button {
         width: 100%;
         text-align: center;
-        background: #eeeeee;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+        background: #fff;
         align-items: center;
         border: none;
         padding: 0.375rem;
         min-height: 48px;
+        border-radius: 10px;
+        font-weight: 600;
 
-        small {
-          font-size: 10px;
-        }
-
-        span {
-          font-size: 14px;
-        }
 
         &.active {
           box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
-          background: #1B4AEF;
+          background: linear-gradient(96deg, #8B4EAD -10.61%, #761C79 84.59%);
           color: #fff;
-        }
-      }
-
-      &:first-of-type {
-        button {
-          border-radius: 4px 0 0 4px;
-        }
-      }
-
-      &:last-of-type {
-        button {
-          border-radius: 0 4px 4px 0;
         }
       }
     }
@@ -1086,7 +1114,7 @@ html {
 
 @media(max-width:575px) {
   .chat-wrapper .chat-footer {
-    padding: 10px 16px;
+    padding: 0 0 0;
   }
 
   .chat-wrapper .chat-main .innerChat {
@@ -1098,4 +1126,52 @@ html {
   .chat-wrapper .chat-main .chat .chat-box {
     max-width: max-content;
   }
+
+  .chatType ul li button {
+    font-size: 14px;
+  }
+
+  .chat-wrapper .chat-footer .chatFooterWrapper {
+    padding: 10px 16px 10px;
+  }
+
+  .chat-wrapper .chat-footer .chatFooterWrapper {
+    margin-top: 10px;
+  }
+}
+
+.balanced .chat-wrapper .chat-footer .cta-footer .cta-chat,
+.balanced .chat-wrapper .chat-main .chat.user .chat-box .message,
+.balanced .chatType ul li button.active {
+  background: linear-gradient(130deg, #4e56db 20%, #5359c1 77.5%);
+}
+
+.balanced .chat-wrapper .chat-main .innerChat .title p span {
+  color: #4e56db;
+}
+
+.balanced .chat-wrapper {
+  background-image: linear-gradient(180deg, rgba(27, 117, 187, 0.1) 50%, rgba(27, 74, 239, 0.2) 96.27%);
+}
+
+.balanced .cta_suggestions button:hover {
+  border: 1px solid #4e56db;
+}
+
+.precise .chat-wrapper .chat-footer .cta-footer .cta-chat,
+.precise .chat-wrapper .chat-main .chat.user .chat-box .message,
+.precise .chatType ul li button.active {
+  background: linear-gradient(96deg, #888E6A -10.61%, #B1BE16 84.59%);
+}
+
+.precise .chat-wrapper .chat-main .innerChat .title p span {
+  color: #B1BE16;
+}
+
+.precise .chat-wrapper {
+  background-image: linear-gradient(180deg, rgba(27, 117, 187, 0.1) 50%, rgba(177, 190, 22, 0.2) 96.27%);
+}
+
+.precise .cta_suggestions button:hover {
+  border: 1px solid #B1BE16;
 }

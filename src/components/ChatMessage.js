@@ -62,8 +62,8 @@ function ChatMessage({
                 type === 'ai' && bgBubbleAi
                   ? ''
                   : type === 'user' && bgBubbleUser
-                  ? ''
-                  : '',
+                    ? ''
+                    : '',
             }}
           >
             <p
@@ -73,8 +73,8 @@ function ChatMessage({
                   type === 'ai' && messageTextColorAi
                     ? ''
                     : type === 'user' && messageTextColorUser
-                    ? ''
-                    : '',
+                      ? ''
+                      : '',
               }}
               dangerouslySetInnerHTML={{ __html: transformMessage(message) }}
             ></p>
@@ -178,7 +178,7 @@ function ChatMessage({
               className='dateTime'
               style={{ color: dateTimeColor ? '' : '' }}
             >
-              {type === 'ai' ? botName || 'Assistant' : 'You'} - {time}
+              {type === 'ai' ? botName || 'Assistant' : 'You'} &#8226; {time}
             </div>
           </div>
         </div>
@@ -196,13 +196,13 @@ function replaceWithHyperlinks(message) {
   const urlRegex = /(?<!href=")\bhttps?:\/\/\S+(?<![.,])/gi;
 
   if (markdownLinkRegex.test(message)) {
-    console.log("Message: ",message)
+    console.log("Message: ", message)
     return message.replace(
       markdownLinkRegex,
       '<a href="$2" target="_blank">$1</a>'
     );
   }
-  console.log("Message: ",message)
+  console.log("Message: ", message)
 
   return message.replace(urlRegex, '<a href="$&" target="_blank">$&</a>');
 }
